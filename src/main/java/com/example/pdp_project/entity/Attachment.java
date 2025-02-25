@@ -1,5 +1,6 @@
 package com.example.pdp_project.entity;
 
+import com.example.pdp_project.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,10 +15,8 @@ import java.util.UUID;
 @NoArgsConstructor
 @Entity
 @Table
-public class Attachment {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class Attachment extends BaseEntity {
+    private Integer id;
     private String name;
 
 }

@@ -25,7 +25,7 @@ public class DateLoader implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         List<Roles> rolesList = rolesRepository.findAll();
-        User user = new User("Admin", "Admin", "1", passwordEncoder.encode("1"), rolesList);
-        userRepository.save(user);
+//        User user = new User("Admin",);
+//        userRepository.save(user);
     }
 }

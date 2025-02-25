@@ -1,10 +1,10 @@
 package com.example.pdp_project.entity;
 
-import com.example.pdp_project.enums.RoleName;
+import com.example.pdp_project.base.BaseEntity;
+import com.example.pdp_project.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.*;
-
-import java.util.UUID;
+import org.springframework.security.core.GrantedAuthority;
 
 @Getter
 @Setter
@@ -13,11 +13,14 @@ import java.util.UUID;
 @Entity
 @Builder
 
-public class Roles {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class Roles extends BaseEntity implements GrantedAuthority {
+    private Integer id;
     @Enumerated(EnumType.STRING)
-    private RoleName roleName;
+    private UserRole role;
+
+    @Override
+    public String getAuthority() {
+        return this.role.name();
+    }
 }
 

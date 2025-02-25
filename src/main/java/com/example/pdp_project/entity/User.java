@@ -1,9 +1,13 @@
 package com.example.pdp_project.entity;
 
+import com.example.pdp_project.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,10 +18,8 @@ import java.util.UUID;
 @Entity
 @Builder
 @Table(name = "users")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class User extends BaseEntity implements UserDetails {
+    private Integer id;
     private String firstName;
     private String lastName;
     @Column(unique = true, nullable = false)
@@ -31,4 +33,17 @@ public class User {
     @ManyToMany
     private List<Course> courses = new ArrayList<>();
 
+    public String getFullName() {
+        return firstName + " " + lastName;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
+    }
+
+    @Override
+    public String getUsername() {
+        return null;
+    }
 }

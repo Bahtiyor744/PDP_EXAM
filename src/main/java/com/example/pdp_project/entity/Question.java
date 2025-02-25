@@ -1,5 +1,6 @@
 package com.example.pdp_project.entity;
 
+import com.example.pdp_project.base.BaseEntity;
 import com.example.pdp_project.enums.Level;
 import jakarta.persistence.*;
 import lombok.*;
@@ -15,10 +16,8 @@ import java.util.UUID;
 @Entity
 @Builder
 @Table(name = "questions")
-public class Question {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class Question extends BaseEntity {
+    private Integer id;
     @Enumerated(EnumType.STRING)
     private Level level;
     private String title;

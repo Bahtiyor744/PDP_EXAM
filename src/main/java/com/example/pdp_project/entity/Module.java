@@ -1,5 +1,6 @@
 package com.example.pdp_project.entity;
 
+import com.example.pdp_project.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -14,10 +15,9 @@ import java.util.UUID;
 @Entity
 @Builder
 @Table(name = "modules")
-public class Module {
-    @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
-    private UUID id;
+public class Module extends BaseEntity {
+
+    private Integer id;
     @Column(nullable = false, unique = true)
     private String name;
     @ManyToOne

@@ -1,5 +1,6 @@
 package com.example.pdp_project.entity;
 
+import com.example.pdp_project.base.BaseEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,9 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Answer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Answer extends BaseEntity {
     private Integer id;
     private String title;
     private Boolean correct;
