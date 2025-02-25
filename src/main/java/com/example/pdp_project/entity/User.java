@@ -1,31 +1,35 @@
 package com.example.pdp_project.entity;
 
 import com.example.pdp_project.base.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.persistence.*;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@Builder
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
     private String firstName;
     private String lastName;
+    @Column(unique = true, nullable = false)
     private String email;
     private String password;
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Roles> roles;
+    @OneToOne
+    private Attachment attachment;
+    private Integer rating;
+    @ManyToMany
+    private List<Course> courses = new ArrayList<>();
 
     public String getFullName() {
         return firstName + " " + lastName;
