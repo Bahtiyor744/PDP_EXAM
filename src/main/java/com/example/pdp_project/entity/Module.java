@@ -8,16 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
 @Table(name = "modules")
 public class Module extends BaseEntity {
-
-    private Integer id;
     @Column(nullable = false, unique = true)
     private String name;
     @ManyToOne

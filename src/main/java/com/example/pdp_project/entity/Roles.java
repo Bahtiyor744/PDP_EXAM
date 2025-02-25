@@ -6,15 +6,13 @@ import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
 
 public class Roles extends BaseEntity implements GrantedAuthority {
-    private Integer id;
     @Enumerated(EnumType.STRING)
     private UserRole role;
 

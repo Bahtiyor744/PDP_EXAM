@@ -8,14 +8,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
-@Getter
-@Setter
 public class Course extends BaseEntity {
-    private Integer id;
     @Column(nullable = false, unique = true)
     private String name;
     @OneToMany(mappedBy = "course")

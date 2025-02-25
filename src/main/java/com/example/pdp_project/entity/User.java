@@ -11,15 +11,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
-    private Integer id;
     private String firstName;
     private String lastName;
     @Column(unique = true, nullable = false)

@@ -7,14 +7,11 @@ import lombok.*;
 import java.util.UUID;
 
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table
 public class AttachmentContent extends BaseEntity {
-    private Integer id;
     private byte[] content;
     @ManyToOne
     private Attachment attachment;

@@ -9,15 +9,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
 @Builder
 @Table(name = "questions")
 public class Question extends BaseEntity {
-    private Integer id;
     @Enumerated(EnumType.STRING)
     private Level level;
     private String title;
@@ -25,5 +23,6 @@ public class Question extends BaseEntity {
     private Module module;
     @OneToMany(mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
+
 }
 
