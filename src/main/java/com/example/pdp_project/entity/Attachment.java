@@ -1,8 +1,10 @@
 package com.example.pdp_project.entity;
 
-import com.example.pdp_project.enums.RoleName;
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.UUID;
 
@@ -11,13 +13,11 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Builder
-
-public class Roles {
+@Table
+public class Attachment {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    @Enumerated(EnumType.STRING)
-    private RoleName roleName;
-}
+    private String name;
 
+}
