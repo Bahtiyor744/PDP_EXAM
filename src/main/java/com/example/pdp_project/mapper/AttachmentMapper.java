@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface AttachmentMapper {
     AttachmentMapper INSTANCE = Mappers.getMapper(AttachmentMapper.class);
 
-    Attachment attachmentMap(AttachmentDTO dto);
-    AttachmentDTO attachmentMapDto(Attachment attachment);
+    Attachment toAttachmentMap(AttachmentDTO dto);
+    AttachmentDTO toAttachmentMapDto(Attachment attachment);
 }

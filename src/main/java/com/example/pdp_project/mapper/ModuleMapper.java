@@ -9,8 +9,8 @@ import org.mapstruct.factory.Mappers;
 public interface ModuleMapper {
     ModuleMapper INSTANCE = Mappers.getMapper(ModuleMapper.class);
 
-    ModuleDTO moduleMapDto(Module module);
-    Module moduleMap(ModuleDTO dto);
+    ModuleDTO toModuleMapDto(Module module);
+    Module toModuleMap(ModuleDTO dto);
 
 
 }

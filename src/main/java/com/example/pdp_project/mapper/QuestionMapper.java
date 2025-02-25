@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface QuestionMapper {
     QuestionMapper INSTANCE = Mappers.getMapper(QuestionMapper.class);
 
-    QuestionDTO questionMapDto(Question question);
-    Question questionMap(QuestionDTO dto);
+    QuestionDTO toQuestionMapDto(Question question);
+    Question toQuestionMap(QuestionDTO dto);
 }

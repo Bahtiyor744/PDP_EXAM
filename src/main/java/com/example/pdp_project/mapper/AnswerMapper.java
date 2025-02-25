@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface AnswerMapper {
     AnswerMapper INSTANCE = Mappers.getMapper(AnswerMapper.class);
 
-    AnswerDTO answermapDto(Answer answer);
-    Answer answerMap(AnswerDTO dto);
+    AnswerDTO toAnswermapDto(Answer answer);
+    Answer toAnswerMap(AnswerDTO dto);
 }

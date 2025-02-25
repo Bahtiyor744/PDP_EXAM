@@ -9,6 +9,6 @@ import org.mapstruct.factory.Mappers;
 public interface CourseMapper {
     CourseMapper INSTANCE = Mappers.getMapper(CourseMapper.class);
 
-    CourseDTO courseMapDto(Course course);
-    Course courseMap(CourseDTO dto);
+    CourseDTO toCourseMapDto(Course course);
+    Course toCourseMap(CourseDTO dto);
 }

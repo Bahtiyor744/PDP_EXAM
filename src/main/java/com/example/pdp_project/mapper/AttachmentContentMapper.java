@@ -10,6 +10,6 @@ import org.mapstruct.factory.Mappers;
 public interface AttachmentContentMapper {
     AttachmentContentMapper INSTANCE = Mappers.getMapper(AttachmentContentMapper.class);
 
-    AttachmentContent attachmentMap(AttachmentContentDTO dto);
-    AttachmentContentDTO attachmentMapDto(AttachmentContent attachment);
+    AttachmentContent toAttachmentMap(AttachmentContentDTO dto);
+    AttachmentContentDTO toAttachmentMapDto(AttachmentContent attachment);
 }
