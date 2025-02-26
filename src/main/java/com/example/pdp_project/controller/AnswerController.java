@@ -23,6 +23,7 @@ public class AnswerController {
         return ResponseEntity.ok(allAnswers);
     }
 
+
     @GetMapping("/{id}")
     public HttpEntity<?> getAnswer(@PathVariable Integer id) {
         AnswerDTO answerById = answerService.getAnswerById(id);

@@ -26,6 +26,7 @@ public class CourseController {
         return ResponseEntity.ok(courses);
     }
 
+
     @GetMapping("/id")
     public HttpEntity<?> getCourseById(@RequestParam("id") Integer id) {
         CourseDTO courseById = courseService.getCourseById(id);

@@ -36,6 +36,7 @@ public class RolesController {
         return ResponseEntity.ok(role1);
     }
 
+
     @DeleteMapping("/{id}")
     public HttpEntity<?> deleteRole(@PathVariable("id") Integer id) {
         rolesService.deleteRole(id);

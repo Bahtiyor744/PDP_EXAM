@@ -40,6 +40,7 @@ public class UserController {
         return ResponseEntity.ok(userDTO);
     }
 
+
     @DeleteMapping("/{id}")
     public HttpEntity<?> deleteUser(@PathVariable("id") Integer id) {
        userService.delete(id);

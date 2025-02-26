@@ -43,6 +43,7 @@ public class ModuleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(module1);
     }
 
+
     @DeleteMapping("/{id}")
     public HttpEntity<?> deleteModuleById(@PathVariable("id") Integer id) {
         moduleService.getModuleById(id);
