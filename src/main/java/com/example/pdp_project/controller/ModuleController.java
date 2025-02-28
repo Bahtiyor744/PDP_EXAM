@@ -19,8 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ModuleController {
 
-    private final ModuleRepository moduleRepository;
-    private final ModuleMapper moduleMapper;
     private final ModuleService moduleService;
 
 

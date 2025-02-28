@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-@Component
+//@Component
 public class DateLoader implements CommandLineRunner {
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;
@@ -24,8 +24,6 @@ public class DateLoader implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        List<Roles> rolesList = rolesRepository.findAll();
-//        User user = new User();
-//        userRepository.save(user);
+
     }
 }

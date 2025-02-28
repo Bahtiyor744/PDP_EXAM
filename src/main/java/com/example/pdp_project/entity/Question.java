@@ -18,8 +18,7 @@ public class Question extends BaseEntity {
     private String title;
     @ManyToOne
     private Lesson lesson;
-    @OneToMany(mappedBy = "answer")
+    @OneToMany(mappedBy = "question")
     private List<Answer> answers = new ArrayList<>();
-
 }
 
