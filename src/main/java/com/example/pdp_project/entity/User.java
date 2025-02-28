@@ -27,9 +27,6 @@ public class User extends BaseEntity implements UserDetails {
     private List<Roles> roles;
     @OneToOne
     private Attachment attachment;
-    private Integer rating;
-    @ManyToMany
-    private List<Course> courses = new ArrayList<>();
 
     public String getFullName() {
         return firstName + " " + lastName;

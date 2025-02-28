@@ -20,8 +20,8 @@ public class Question extends BaseEntity {
     private Level level;
     private String title;
     @ManyToOne
-    private Module module;
-    @OneToMany(mappedBy = "question")
+    private Lesson lesson;
+    @OneToMany(mappedBy = "answer")
     private List<Answer> answers = new ArrayList<>();
 
 }

@@ -19,8 +19,8 @@ public class Module extends BaseEntity {
     private String name;
     @ManyToOne
     private Course course;
-    @OneToMany(mappedBy = "module")
-    private List<Question> questions = new ArrayList<>();
+    @OneToMany(mappedBy = "lesson")
+    private List<Lesson> lessons = new ArrayList<>();
 
 }
 
