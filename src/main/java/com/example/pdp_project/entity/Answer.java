@@ -13,6 +13,5 @@ public class Answer extends BaseEntity {
     private Boolean correct;
     @ManyToOne
     private Question question;
-    private Integer mark;
 }
 

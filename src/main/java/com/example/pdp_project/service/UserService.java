@@ -16,30 +16,30 @@ import java.util.stream.Collectors;
 public class UserService {
 
     private final UserRepository userRepository;
-    private final UserMapper userMapper=UserMapper.INSTANCE;
+    private final UserMapper userMapper = UserMapper.INSTANCE;
 
     public List<UserDTO> findAll() {
-        List<User> users=userRepository.findAll();
+        List<User> users = userRepository.findAll();
         return users.stream()
                 .map(userMapper::toUserMapDto)
                 .collect(Collectors.toList());
     }
 
     public UserDTO findById(Integer id) {
-        Optional<User> user=userRepository.findById(id);
+        Optional<User> user = userRepository.findById(id);
         return user.map(userMapper::toUserMapDto).orElse(null);
     }
 
     public UserDTO create(UserDTO userDTO) {
-        User user=userMapper.toUserMap(userDTO);
-        user=userRepository.save(user);
+        User user = userMapper.toUserMap(userDTO);
+        user = userRepository.save(user);
         return userMapper.toUserMapDto(user);
     }
 
     public UserDTO update(Integer id, UserDTO userDTO) {
-        Optional<User> user=userRepository.findById(id);
-        if(user.isPresent()) {
-            User user1=userMapper.toUserMap(userDTO);
+        Optional<User> user = userRepository.findById(id);
+        if (user.isPresent()) {
+            User user1 = userMapper.toUserMap(userDTO);
             user1.setId(id);
             userRepository.save(user1);
             return userMapper.toUserMapDto(user1);
@@ -47,8 +47,12 @@ public class UserService {
         return null;
     }
 
+    public UserDTO userToDTO(User user) {
+        return userMapper.toUserMapDto(user);
+    }
+
     public void delete(Integer id) {
-       userRepository.deleteById(id);
+        userRepository.deleteById(id);
     }
 
 }
