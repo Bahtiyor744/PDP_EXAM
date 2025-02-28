@@ -7,7 +7,7 @@ import lombok.Value;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
+@NoArgsConstructor()
 public class AttachmentContentDTO {
     private Integer id;
     private byte[] data;
