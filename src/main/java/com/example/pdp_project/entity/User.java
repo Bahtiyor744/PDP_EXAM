@@ -31,7 +31,7 @@ public class User extends BaseEntity implements UserDetails {
     private String email;
     @NotBlank(message = "Password is required")
     private String password;
-    @NotBlank(message = "Password is required")
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Roles> roles;
     @OneToOne
