@@ -16,10 +16,10 @@ import java.util.stream.Collectors;
 public class ModuleService {
 
     private final ModuleRepository moduleRepository;
-    private final ModuleMapper moduleMapper=ModuleMapper.INSTANCE;
+    private final ModuleMapper moduleMapper = ModuleMapper.INSTANCE;
 
     public List<ModuleDTO> getAllModules() {
-        List<Module> modules=moduleRepository.findAll();
+        List<Module> modules = moduleRepository.findAll();
         return modules.stream()
                 .map(moduleMapper::toModuleMapDto)
                 .collect(Collectors.toList());
@@ -27,20 +27,20 @@ public class ModuleService {
     }
 
     public ModuleDTO getModuleById(Integer id) {
-        Optional<Module> module=moduleRepository.findById(id);
+        Optional<Module> module = moduleRepository.findById(id);
         return module.map(moduleMapper::toModuleMapDto).orElse(null);
     }
 
     public ModuleDTO createModule(ModuleDTO moduleDTO) {
-        Module module=moduleMapper.toModuleMap(moduleDTO);
-        module=moduleRepository.save(module);
+        Module module = moduleMapper.toModuleMap(moduleDTO);
+        module = moduleRepository.save(module);
         return moduleMapper.toModuleMapDto(module);
     }
 
     public ModuleDTO updateModule(Integer id, ModuleDTO moduleDTO) {
-        if(moduleRepository.existsById(id)) {
-            Module module=moduleMapper.toModuleMap(moduleDTO);
-            module=moduleRepository.save(module);
+        if (moduleRepository.existsById(id)) {
+            Module module = moduleMapper.toModuleMap(moduleDTO);
+            module = moduleRepository.save(module);
             module.setId(id);
             return moduleMapper.toModuleMapDto(module);
         }

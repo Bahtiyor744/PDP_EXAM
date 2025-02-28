@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/module")
 @RequiredArgsConstructor
 public class ModuleController {
-
     private final ModuleService moduleService;
 
 
