@@ -27,9 +27,6 @@ public class User extends BaseEntity implements UserDetails {
     private List<Roles> roles;
     @OneToOne
     private Attachment attachment;
-    private Integer rating;
-    @ManyToMany
-    private List<Course> courses = new ArrayList<>();
 
     public String getFullName() {
         return firstName + " " + lastName;
@@ -37,11 +34,11 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 }
