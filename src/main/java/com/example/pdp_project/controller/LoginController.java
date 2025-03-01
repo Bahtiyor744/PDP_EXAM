@@ -41,7 +41,6 @@ public class LoginController {
         Map<String, Object> response = new HashMap<>();
         response.put("token", token);
         response.put("user", userDTO);
-        System.out.println(response);
         return ResponseEntity.ok(response);
     }
 }
