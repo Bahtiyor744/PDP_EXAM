@@ -48,7 +48,10 @@ public class UserService {
     }
 
     public UserDTO userToDTO(User user) {
-        return userMapper.toUserMapDto(user);
+        System.out.println("serviceda user to dto method : " + user);
+        UserDTO userDTO = userMapper.toUserMapDto(user);
+        System.out.println(userDTO);
+        return userDTO;
     }
 
     public void delete(Integer id) {

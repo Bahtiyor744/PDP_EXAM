@@ -1,5 +1,6 @@
 package com.example.pdp_project.dto;
 
+import com.example.pdp_project.entity.Attachment;
 import com.example.pdp_project.entity.Roles;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,4 +17,5 @@ public class UserDTO {
     private String lastName;
     private String email;
     private List<Roles> roles;
+    private Attachment attachment;
 }
