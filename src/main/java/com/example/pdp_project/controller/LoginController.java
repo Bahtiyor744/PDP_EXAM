@@ -2,6 +2,7 @@ package com.example.pdp_project.controller;
 
 import com.example.pdp_project.dto.EmailDTO;
 import com.example.pdp_project.dto.LoginDTO;
+import com.example.pdp_project.dto.UserDTO;
 import com.example.pdp_project.entity.User;
 import com.example.pdp_project.security.AuthenticationService;
 import com.example.pdp_project.service.UserService;
