@@ -42,5 +42,6 @@ public class LoginController {
         response.put("token", token);
         response.put("user", userDTO);
         return ResponseEntity.ok(response);
+        // salom
     }
 }
