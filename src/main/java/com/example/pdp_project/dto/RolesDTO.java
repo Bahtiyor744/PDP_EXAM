@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Value;
 
 @Data
-@NoArgsConstructor(force = true)
+@NoArgsConstructor()
 @AllArgsConstructor
 public class RolesDTO {
     private Integer id;

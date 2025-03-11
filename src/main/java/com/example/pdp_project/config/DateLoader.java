@@ -13,6 +13,7 @@ import java.util.List;
 
 //@Component
 @RequiredArgsConstructor
+
 public class DateLoader implements CommandLineRunner {
     private final RolesRepository rolesRepository;
     private final PasswordEncoder passwordEncoder;

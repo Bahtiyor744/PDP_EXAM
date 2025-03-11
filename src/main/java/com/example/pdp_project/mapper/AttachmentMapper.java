@@ -5,7 +5,7 @@ import com.example.pdp_project.entity.Attachment;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface AttachmentMapper {
     AttachmentMapper INSTANCE = Mappers.getMapper(AttachmentMapper.class);
 
