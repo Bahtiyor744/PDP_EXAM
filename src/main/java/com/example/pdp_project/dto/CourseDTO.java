@@ -7,7 +7,7 @@ import lombok.Value;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
+@NoArgsConstructor()
 public class CourseDTO {
     private Integer id;
     private String name;

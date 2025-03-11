@@ -5,7 +5,7 @@ import com.example.pdp_project.entity.Module;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ModuleMapper {
     ModuleMapper INSTANCE = Mappers.getMapper(ModuleMapper.class);
 

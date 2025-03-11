@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor(force = true)
+@NoArgsConstructor()
 public class UserDTO {
     private Integer id;
     private String firstName;
