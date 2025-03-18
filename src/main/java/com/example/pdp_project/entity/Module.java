@@ -20,7 +20,6 @@ public class Module extends BaseEntity {
     @ManyToOne
     private Course course;
     @OneToMany(mappedBy = "module")
-    private List<Question> questions = new ArrayList<>();
-
+    private List<Lesson> lessons = new ArrayList<>();
 }
 

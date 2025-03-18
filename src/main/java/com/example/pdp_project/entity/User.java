@@ -2,14 +2,17 @@ package com.example.pdp_project.entity;
 
 import com.example.pdp_project.base.BaseEntity;
 import jakarta.persistence.*;
-import lombok.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,18 +21,22 @@ import java.util.UUID;
 @Builder
 @Table(name = "users")
 public class User extends BaseEntity implements UserDetails {
+    @NotBlank(message = "First Name is required")
     private String firstName;
+    @NotBlank(message = "Last Name is required")
     private String lastName;
+    @Email(message = "Incorrect email")
+    @NotBlank(message = "Email is required")
     @Column(unique = true, nullable = false)
     private String email;
+    @NotBlank(message = "Password is required")
     private String password;
+
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Roles> roles;
     @OneToOne
     private Attachment attachment;
-    private Integer rating;
-    @ManyToMany
-    private List<Course> courses = new ArrayList<>();
+
 
     public String getFullName() {
         return firstName + " " + lastName;
@@ -37,11 +44,11 @@ public class User extends BaseEntity implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return this.roles;
     }
 
     @Override
     public String getUsername() {
-        return null;
+        return email;
     }
 }

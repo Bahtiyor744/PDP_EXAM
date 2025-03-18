@@ -18,5 +18,4 @@ public class Course extends BaseEntity {
     private String name;
     @OneToMany(mappedBy = "course")
     private List<Module> modules = new ArrayList<>();
-
 }
