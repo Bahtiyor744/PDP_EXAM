@@ -33,7 +33,8 @@ public class SecurityConfig {
                 .authorizeHttpRequests(req ->
                         req
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-                                .requestMatchers("/login", "/file/**").permitAll()
+                                .requestMatchers("/login","/login/code", "/file/**").permitAll()
+                                .requestMatchers("/user").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
                                 .anyRequest()
                                 .authenticated())

@@ -1,15 +1,24 @@
 package com.example.pdp_project.service;
 
+import com.example.pdp_project.dto.LoginDTO;
+import com.example.pdp_project.dto.RegisterDTO;
 import com.example.pdp_project.dto.UserDTO;
+import com.example.pdp_project.entity.Roles;
 import com.example.pdp_project.entity.User;
+import com.example.pdp_project.enums.UserRole;
 import com.example.pdp_project.mapper.UserMapper;
+import com.example.pdp_project.repo.RolesRepository;
 import com.example.pdp_project.repo.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+
+import static com.example.pdp_project.enums.UserRole.*;
 
 @Service
 @RequiredArgsConstructor
@@ -17,6 +26,8 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final UserMapper userMapper = UserMapper.INSTANCE;
+    private final RolesRepository rolesRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public List<UserDTO> findAll() {
         List<User> users = userRepository.findAll();
@@ -30,8 +41,11 @@ public class UserService {
         return user.map(userMapper::toUserMapDto).orElse(null);
     }
 
-    public UserDTO create(UserDTO userDTO) {
-        User user = userMapper.toUserMap(userDTO);
+    public UserDTO create(RegisterDTO registerDTO) {
+        User user = userMapper.toUserMap(registerDTO);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        Roles role = rolesRepository.findByRole(USER);
+        user.setRoles(new ArrayList<>(List.of(role)));
         user = userRepository.save(user);
         return userMapper.toUserMapDto(user);
     }
@@ -58,4 +72,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
+    public User findByEmailAndPassword(LoginDTO loginDTO) {
+        return userRepository.findByEmail(loginDTO.getEmail());
+    }
 }
