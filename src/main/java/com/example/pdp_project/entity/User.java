@@ -36,8 +36,7 @@ public class User extends BaseEntity implements UserDetails {
     private List<Roles> roles;
     @OneToOne
     private Attachment attachment;
-
-
+    private String code;
     public String getFullName() {
         return firstName + " " + lastName;
     }
@@ -50,5 +49,14 @@ public class User extends BaseEntity implements UserDetails {
     @Override
     public String getUsername() {
         return email;
+    }
+
+    public User(String firstName, String lastName, String email, String password, List<Roles> roles, Attachment attachment) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+        this.attachment = attachment;
     }
 }

@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# aplication properties ignor
+src/main/resources/application.properties
+
+# Игнорируем DataLoader.java
+src/main/java/com/example/yourproject/DataLoader.java

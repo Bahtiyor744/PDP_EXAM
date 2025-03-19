@@ -1,10 +1,12 @@
 package com.example.pdp_project.controller;
 
+import com.example.pdp_project.dto.RegisterDTO;
 import com.example.pdp_project.dto.UserDTO;
 import com.example.pdp_project.entity.User;
 import com.example.pdp_project.mapper.UserMapper;
 import com.example.pdp_project.repo.UserRepository;
 import com.example.pdp_project.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -32,9 +34,8 @@ public class UserController {
     }
 
     @PostMapping
-    public HttpEntity<?> createUser(@RequestBody UserDTO userDTO) {
-        userService.create(userDTO);
-        return ResponseEntity.ok(userDTO);
+    public ResponseEntity<?> registerPage(@RequestBody @Valid RegisterDTO registerDTO) {
+        return ResponseEntity.ok().body(userService.create(registerDTO));
     }
 
 
