@@ -40,18 +40,20 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req ->
                         req
-                                .requestMatchers(HttpMethod.OPTIONS, "/").permitAll()
-                                .requestMatchers("/login", "/file/").permitAll()
-                                .anyRequest().authenticated()
+                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                                .requestMatchers("/login", "/login/code", "/file/**").permitAll()
+                                .requestMatchers("/user").permitAll()
+                                .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER", "SUPER_ADMIN")
+                                .anyRequest()
+                                .authenticated()
                 )
                 .oauth2Login(oauth2 -> oauth2
                         .userInfoEndpoint(userInfo -> userInfo
                                 .userService(customOAuth2UserService)
                         )
                         .successHandler(oAuth2SuccessHandler)  // SuccessHandler ni qo'shamiz
-                        .failureHandler((request, response, exception) -> {
-                            response.sendRedirect("/login?error=nouser");
-                        })
+                        .failureHandler((request, response, exception) -> response.sendRedirect("/login?error=nouser")
+                        )
                 )
                 .userDetailsService(customUserDetailsService)
                 .addFilterBefore(myFilter, UsernamePasswordAuthenticationFilter.class);
