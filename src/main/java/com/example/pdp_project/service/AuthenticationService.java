@@ -30,14 +30,11 @@ public class AuthenticationService {
         if (user == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found");
         }
-
         if (!verificationService.verifyCode(loginDTO.getEmail(), loginDTO.getCode())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid verification code");
         }
-
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(loginDTO.getEmail(), loginDTO.getPassword()));
-
         User authenticatedUser = (User) authentication.getPrincipal();
         String token = tokenService.generateToken(authenticatedUser);
         UserDTO userDTO = userService.userToDTO(authenticatedUser);
@@ -45,7 +42,6 @@ public class AuthenticationService {
         Map<String, Object> response = new HashMap<>();
         response.put("token", token);
         response.put("user", userDTO);
-
         return ResponseEntity.ok(response);
     }
 }

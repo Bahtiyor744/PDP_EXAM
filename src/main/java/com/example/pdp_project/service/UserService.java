@@ -1,5 +1,6 @@
 package com.example.pdp_project.service;
 
+import com.example.pdp_project.dto.EmailDTO;
 import com.example.pdp_project.dto.LoginDTO;
 import com.example.pdp_project.dto.RegisterDTO;
 import com.example.pdp_project.dto.UserDTO;
@@ -72,7 +73,7 @@ public class UserService {
         userRepository.deleteById(id);
     }
 
-    public User findByEmailAndPassword(LoginDTO loginDTO) {
+    public User findByEmailAndPassword(EmailDTO loginDTO) {
         return userRepository.findByEmail(loginDTO.getEmail());
     }
 }
