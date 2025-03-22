@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class AuthService {
     private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
     private final AuthenticationManager authenticationManager;
 
