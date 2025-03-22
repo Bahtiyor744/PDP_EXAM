@@ -53,8 +53,10 @@ public class SecurityConfig {
                 )
                 .userDetailsService(customUserDetailsService)
                 .addFilterBefore(myFilter, UsernamePasswordAuthenticationFilter.class);
+
         return http.build();
     }
+     
 
     @Bean
     public PasswordEncoder passwordEncoder() {
