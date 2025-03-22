@@ -55,4 +55,13 @@ public class AnswerService {
         }
         return null;
     }
+
+    public List<AnswerDTO> getAnswerByQuestionsId(Integer id) {
+        List<Answer> allByQuestionId = answerRepository.findAllByQuestion_Id(id);
+        List<AnswerDTO> answerDTOS=new ArrayList<>();
+        for (Answer answer : allByQuestionId) {
+            answerDTOS.add(answerMapper.toAnswermapDto(answer));
+        }
+        return answerDTOS;
+    }
 }

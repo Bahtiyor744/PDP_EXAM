@@ -1,4 +1,4 @@
-package com.example.pdp_project.security;
+package com.example.pdp_project.service;
 
 import com.example.pdp_project.entity.Roles;
 import com.example.pdp_project.entity.User;
