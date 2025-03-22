@@ -7,7 +7,6 @@ import com.example.pdp_project.repo.AnswerRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,31 +36,31 @@ public class AnswerService {
        return answerMapper.toAnswermapDto(savedAnswer);
     }
 
-    public AnswerDTO updateAnswer(int id, AnswerDTO answerDTO) {
+//    public AnswerDTO updateAnswer(int id, AnswerDTO answerDTO) {
+//
+//        if(answerRepository.existsById(id)) {
+//            Answer answer=answerMapper.toAnswerMap(answerDTO);
+//            Answer savedAnswer=answerRepository.save(answer);
+//            answer.setId(id);
+//            return answerMapper.toAnswermapDto(savedAnswer);
+//        }
+//        return null;
+//    }
 
-        if(answerRepository.existsById(id)) {
-            Answer answer=answerMapper.toAnswerMap(answerDTO);
-            Answer savedAnswer=answerRepository.save(answer);
-            answer.setId(id);
-            return answerMapper.toAnswermapDto(savedAnswer);
-        }
-        return null;
-    }
-
-    public AnswerDTO deleteAnswer(int id) {
+    public void deleteAnswer(int id) {
         if(answerRepository.existsById(id)) {
             Answer answer=answerRepository.findById(id).orElse(null);
+            assert answer != null;
             answerRepository.delete(answer);
         }
-        return null;
     }
 
-    public List<AnswerDTO> getAnswerByQuestionsId(Integer id) {
-        List<Answer> allByQuestionId = answerRepository.findAllByQuestion_Id(id);
-        List<AnswerDTO> answerDTOS=new ArrayList<>();
-        for (Answer answer : allByQuestionId) {
-            answerDTOS.add(answerMapper.toAnswermapDto(answer));
-        }
-        return answerDTOS;
-    }
+//    public List<AnswerDTO> getAnswerByQuestionsId(Integer id) {
+//        List<Answer> allByQuestionId = answerRepository.findAllByQuestion_Id(id);
+//        List<AnswerDTO> answerDTOS=new ArrayList<>();
+//        for (Answer answer : allByQuestionId) {
+//            answerDTOS.add(answerMapper.toAnswermapDto(answer));
+//        }
+//        return answerDTOS;
+//    }
 }

@@ -1,6 +1,7 @@
 package com.example.pdp_project.service;
 
 import com.example.pdp_project.dto.EmailDTO;
+import com.example.pdp_project.dto.RegisterDTO;
 import com.example.pdp_project.dto.UserDTO;
 import com.example.pdp_project.entity.Roles;
 import com.example.pdp_project.entity.User;
@@ -39,7 +40,7 @@ public class UserService {
         return user.map(userMapper::toUserMapDto).orElse(null);
     }
 
-    public UserDTO create(UserDTO registerDTO) {
+    public UserDTO create(RegisterDTO registerDTO) {
         User user = userMapper.toUserMap(registerDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Roles role = rolesRepository.findByRole(USER);

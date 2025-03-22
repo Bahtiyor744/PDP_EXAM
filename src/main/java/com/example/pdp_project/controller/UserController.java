@@ -1,16 +1,12 @@
 package com.example.pdp_project.controller;
 
 import com.example.pdp_project.dto.UserDTO;
-import com.example.pdp_project.entity.User;
-import com.example.pdp_project.mapper.UserMapper;
-import com.example.pdp_project.repo.UserRepository;
 import com.example.pdp_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -32,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping
-    public ResponseEntity<?> registerPage(@RequestBody @Valid RegisterDTO registerDTO) {
+    public ResponseEntity<?> registerPage() {
         return ResponseEntity.ok().body("");
     }
 
