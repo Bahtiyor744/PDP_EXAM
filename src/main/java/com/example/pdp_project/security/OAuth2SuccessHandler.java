@@ -14,6 +14,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @Component
 public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
@@ -32,24 +33,30 @@ public class OAuth2SuccessHandler implements AuthenticationSuccessHandler {
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
         OAuth2User oAuth2User = (OAuth2User) authentication.getPrincipal();
         String email = oAuth2User.getAttribute("email");
+        String firstName = oAuth2User.getAttribute("given_name");
+        String lastName = oAuth2User.getAttribute("family_name");
 
         if (email == null) {
             throw new IllegalStateException("Email not found in OAuth provider response");
         }
 
         // Bazadan foydalanuvchini qidiramiz
-        User user = userRepository.findByEmail(email);
+       User user = userRepository.findByEmail(email);
         if (user == null) {
-            // Security context ni tozalash orqali foydalanuvchini anonim qilish
-            SecurityContextHolder.clearContext();
-            response.sendRedirect("/login?error=nouser");
-            return;
+            User newUser = new User();
+            String defaultPassword = "123456";
+            newUser.setEmail(email);
+            newUser.setPassword(defaultPassword);
+            newUser.setRoles(List.of());
+            newUser.setFirstName(firstName != null ? firstName : "Unknown");
+            newUser.setLastName(lastName != null ? lastName : "Unknown");
+            user = userRepository.save(newUser);
         }
 
         // Agar foydalanuvchi bazada mavjud bo'lsa, JWT token yaratamiz
         String jwtToken = jwtProvider.generateToken(user);
-
+        System.out.println(jwtToken);
         // Foydalanuvchini yopiq URL (masalan, /panel) ga yo'naltiramiz
-        response.sendRedirect("/panel?token=" + jwtToken);
+        response.sendRedirect("/user");
     }
 }
