@@ -1,16 +1,12 @@
 package com.example.pdp_project.controller;
 
 import com.example.pdp_project.dto.CourseDTO;
-import com.example.pdp_project.entity.Course;
-import com.example.pdp_project.mapper.CourseMapper;
-import com.example.pdp_project.repo.CourseRepository;
 import com.example.pdp_project.service.CourseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
