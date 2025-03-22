@@ -4,7 +4,7 @@ import com.example.pdp_project.dto.LoginDTO;
 import com.example.pdp_project.dto.UserDTO;
 import com.example.pdp_project.entity.User;
 import com.example.pdp_project.repo.UserRepository;
-import com.example.pdp_project.security.TokenService;
+import com.example.pdp_project.service.TokenService;
 import com.example.pdp_project.service.UserService;
 import com.example.pdp_project.service.VerificationService;
 import lombok.RequiredArgsConstructor;

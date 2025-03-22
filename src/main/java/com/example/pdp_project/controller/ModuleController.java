@@ -40,6 +40,13 @@ public class ModuleController {
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
 
+    @GetMapping("/mudules/{id}")
+    public HttpEntity<?> getMuduleById(@PathVariable("id") Integer id) {
+        List<ModuleDTO> modulesByCourseId = moduleService.getModulesByCourseId(id);
+        return ResponseEntity.ok(modulesByCourseId);
+    }
+
+
 
 
 }

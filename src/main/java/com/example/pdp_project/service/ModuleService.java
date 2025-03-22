@@ -7,6 +7,7 @@ import com.example.pdp_project.repo.ModuleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -50,5 +51,15 @@ public class ModuleService {
     public void deleteModule(Integer id) {
         moduleRepository.deleteById(id);
 
+    }
+
+    public List<ModuleDTO> getModulesByCourseId(Integer id) {
+        List<Module> allByCourseId = moduleRepository.findAllByCourse_Id(id);
+        List<ModuleDTO> moduleDTOList=new ArrayList<>();
+        for (Module module : allByCourseId) {
+            ModuleDTO moduleMapDto = moduleMapper.toModuleMapDto(module);
+            moduleDTOList.add(moduleMapDto);
+        }
+        return moduleDTOList;
     }
 }
