@@ -28,7 +28,7 @@ public class DateLoader implements CommandLineRunner {
     private final AnswerRepository answerRepository;
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         if (ddlAuto.equals("create")) {
             Roles role1 = new Roles(UserRole.SUPER_ADMIN);
             Roles role2 = new Roles(UserRole.ADMIN);
