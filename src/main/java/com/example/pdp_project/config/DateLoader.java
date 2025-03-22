@@ -51,50 +51,37 @@ public class DateLoader implements CommandLineRunner {
             courseRepository.save(course2);
 
 
-            Module module1 = new Module("Module1", course1, new ArrayList<>());
-            Module module2 = new Module("Module2", course1, new ArrayList<>());
-            Module module3 = new Module("Module3", course2, new ArrayList<>());
-            Module module4 = new Module("Module4", course2, new ArrayList<>());
+            Module module1 = new Module("Module1", course1);
+            Module module2 = new Module("Module2", course1);
+            Module module3 = new Module("Module3", course2);
+            Module module4 = new Module("Module4", course2);
             moduleRepository.save(module1);
             moduleRepository.save(module2);
             moduleRepository.save(module3);
             moduleRepository.save(module4);
 
 
-            Lesson lesson1 = new Lesson("lesson1", module1, new ArrayList<>());
-            Lesson lesson2 = new Lesson("lesson2", module2, new ArrayList<>());
-            Lesson lesson3 = new Lesson("lesson3", module3, new ArrayList<>());
-            Lesson lesson4 = new Lesson("lesson4", module4, new ArrayList<>());
+            Lesson lesson1 = new Lesson("lesson1", module1);
+            Lesson lesson2 = new Lesson("lesson2", module2);
+            Lesson lesson3 = new Lesson("lesson3", module3);
+            Lesson lesson4 = new Lesson("lesson4", module4);
             lessonRepository.save(lesson1);
             lessonRepository.save(lesson2);
             lessonRepository.save(lesson3);
             lessonRepository.save(lesson4);
 
-            Question question1 = new Question("quation1", lesson1, new ArrayList<>());
-            Question question2 = new Question("quation2", lesson2, new ArrayList<>());
-            Question question3 = new Question("quation3", lesson3, new ArrayList<>());
-            Question question4 = new Question("quation4", lesson4, new ArrayList<>());
-
-            questionRepository.save(question1);
-            questionRepository.save(question2);
-            questionRepository.save(question3);
-            questionRepository.save(question4);
-
-            Answer answer1 = new Answer("answer1", true, question1);
-            Answer answer2 = new Answer("answer2", false, question1);
-            Answer answer3 = new Answer("answer3", false, question1);
-
-            Answer answer4 = new Answer("answer4", true, question2);
-            Answer answer5 = new Answer("answer5", false, question2);
-            Answer answer6 = new Answer("answer6", false, question2);
-
-            Answer answer7 = new Answer("answer7", true, question3);
-            Answer answer8 = new Answer("answer8", false, question3);
-            Answer answer9 = new Answer("answer9", false, question3);
-
-            Answer answer10 = new Answer("answer10", true, question4);
-            Answer answer11 = new Answer("answer11", false, question4);
-            Answer answer12 = new Answer("answer12", false, question4);
+            Answer answer1 = new Answer("answer1", true);
+            Answer answer2 = new Answer("answer2", false);
+            Answer answer3 = new Answer("answer3", false);
+            Answer answer4 = new Answer("answer4", true);
+            Answer answer5 = new Answer("answer5", false);
+            Answer answer6 = new Answer("answer6", false);
+            Answer answer7 = new Answer("answer7", true);
+            Answer answer8 = new Answer("answer8", false);
+            Answer answer9 = new Answer("answer9", false);
+            Answer answer10 = new Answer("answer10", true);
+            Answer answer11 = new Answer("answer11", false);
+            Answer answer12 = new Answer("answer12", false);
 
             answerRepository.save(answer1);
             answerRepository.save(answer2);
@@ -108,6 +95,22 @@ public class DateLoader implements CommandLineRunner {
             answerRepository.save(answer10);
             answerRepository.save(answer11);
             answerRepository.save(answer12);
+
+
+            ArrayList<Answer> answers1 = new ArrayList<>(List.of(answer1,answer2,answer3));
+            ArrayList<Answer> answers2 = new ArrayList<>(List.of(answer4,answer5,answer6));
+            ArrayList<Answer> answers3 = new ArrayList<>(List.of(answer7,answer8,answer9));
+            ArrayList<Answer> answers4 = new ArrayList<>(List.of(answer10,answer11,answer12));
+
+            Question question1 = new Question("quation1", lesson1, answers1);
+            Question question2 = new Question("quation2", lesson2, answers2);
+            Question question3 = new Question("quation3", lesson3, answers3);
+            Question question4 = new Question("quation4", lesson4, answers4);
+
+            questionRepository.save(question1);
+            questionRepository.save(question2);
+            questionRepository.save(question3);
+            questionRepository.save(question4);
         }
     }
 }

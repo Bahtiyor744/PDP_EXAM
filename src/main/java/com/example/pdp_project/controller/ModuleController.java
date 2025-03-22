@@ -21,8 +21,8 @@ public class ModuleController {
     private final ModuleService moduleService;
     @GetMapping
     public HttpEntity<?> getModule() {
-        List<ModuleDTO> modules = moduleService.getAllModules();
-        return ResponseEntity.ok(modules);
+//        List<ModuleDTO> modules = moduleService.getAllModules();
+        return ResponseEntity.ok(moduleService.getAllModules());
     }
 
 

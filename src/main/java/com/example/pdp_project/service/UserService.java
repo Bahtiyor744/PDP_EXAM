@@ -46,7 +46,9 @@ public class UserService {
         User user = userMapper.toUserMap(registerDTO);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         Roles role = rolesRepository.findByRole(USER);
-        user.setRoles(new ArrayList<>(List.of(role)));
+        List<Roles> roles = new ArrayList<>();
+        roles.add(role);
+        user.setRoles(roles);
         user = userRepository.save(user);
         return userMapper.toUserMapDto(user);
     }

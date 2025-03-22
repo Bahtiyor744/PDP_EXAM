@@ -11,7 +11,5 @@ import lombok.*;
 public class Answer extends BaseEntity {
     private String title;
     private Boolean correct;
-    @ManyToOne
-    private Question question;
 }
 

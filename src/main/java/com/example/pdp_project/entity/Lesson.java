@@ -1,10 +1,9 @@
 package com.example.pdp_project.entity;
 
 import com.example.pdp_project.base.BaseEntity;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -23,6 +22,4 @@ public class Lesson extends BaseEntity {
     private String name;
     @ManyToOne
     private Module module;
-    @OneToMany(mappedBy = "lesson")
-    private List<Question> questions = new ArrayList<>();
 }

@@ -1,12 +1,12 @@
 package com.example.pdp_project.entity;
 
 import com.example.pdp_project.base.BaseEntity;
-import jakarta.persistence.*;
-import lombok.*;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
@@ -16,10 +16,4 @@ import java.util.UUID;
 public class Course extends BaseEntity {
     @Column(nullable = false, unique = true)
     private String name;
-    @OneToMany(mappedBy = "course")
-    private List<Module> modules = new ArrayList<>();
-
-    public Course(String name) {
-        this.name = name;
-    }
 }

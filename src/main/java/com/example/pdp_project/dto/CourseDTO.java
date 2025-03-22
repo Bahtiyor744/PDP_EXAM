@@ -11,5 +11,4 @@ import lombok.Value;
 public class CourseDTO {
     private Integer id;
     private String name;
-    private String description;
 }

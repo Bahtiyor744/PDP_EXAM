@@ -2,6 +2,7 @@ package com.example.pdp_project.controller;
 
 import com.example.pdp_project.dto.EmailDTO;
 import com.example.pdp_project.dto.LoginDTO;
+import com.example.pdp_project.dto.RegisterDTO;
 import com.example.pdp_project.dto.UserDTO;
 import com.example.pdp_project.entity.User;
 import com.example.pdp_project.security.AuthenticationService;
@@ -38,5 +39,10 @@ public class LoginController {
     @PostMapping("/code")
     public ResponseEntity<?> verificationCode(@RequestBody @Valid LoginDTO loginDTO) {
         return authenticationService.verifyAndAuthenticate(loginDTO);
+    }
+
+    @PostMapping("/register")
+    public ResponseEntity<?> userRegister(@RequestBody @Valid RegisterDTO registerDTO) {
+        return ResponseEntity.ok().body(userService.create(registerDTO));
     }
 }

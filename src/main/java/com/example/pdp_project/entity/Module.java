@@ -1,6 +1,8 @@
 package com.example.pdp_project.entity;
 
 import com.example.pdp_project.base.BaseEntity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,11 +17,9 @@ import java.util.UUID;
 @Builder
 @Table(name = "modules")
 public class Module extends BaseEntity {
-    @Column(nullable = false, unique = true)
+    @Column(nullable = false)
     private String name;
     @ManyToOne
     private Course course;
-    @OneToMany(mappedBy = "module")
-    private List<Lesson> lessons = new ArrayList<>();
 }
 

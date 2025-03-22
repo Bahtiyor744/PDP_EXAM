@@ -18,11 +18,16 @@ public class ModuleService {
     private final ModuleRepository moduleRepository;
     private final ModuleMapper moduleMapper = ModuleMapper.INSTANCE;
 
-    public List<ModuleDTO> getAllModules() {
+    public List<Module> getAllModules() {
         List<Module> modules = moduleRepository.findAll();
-        return modules.stream()
-                .map(moduleMapper::toModuleMapDto)
-                .collect(Collectors.toList());
+//        System.out.println(modules.get(1).getName());
+//        System.out.println(modules.get(1).getCourse());
+//        System.out.println(modules.get(1).getId());
+//        System.out.println(modules.get(1).getLessons());
+//        return modules.stream()
+//                .map(moduleMapper::toModuleMapDto)
+//                .collect(Collectors.toList());
+        return modules;
 
     }
 

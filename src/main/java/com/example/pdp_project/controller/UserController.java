@@ -30,7 +30,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<?> registerPage(@RequestBody @Valid RegisterDTO registerDTO) {
-        return ResponseEntity.ok().body(userService.create(registerDTO));
+        return ResponseEntity.ok().body("");
     }
 
 
