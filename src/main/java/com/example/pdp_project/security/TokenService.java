@@ -1,4 +1,4 @@
-package com.example.pdp_project.service;
+package com.example.pdp_project.security;
 
 import com.example.pdp_project.entity.Roles;
 import com.example.pdp_project.entity.User;
@@ -21,7 +21,7 @@ public class TokenService {
         claims.put("id", user.getId());
         claims.put("email", user.getEmail());
         claims.put("roles", rolesString(user));
-        return Jwts.builder()
+        return "Bearer " + Jwts.builder()
                 .signWith(signKey())
                 .subject(user.getEmail())
                 .claims(claims)

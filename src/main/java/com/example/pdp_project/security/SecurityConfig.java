@@ -35,20 +35,12 @@ public class SecurityConfig {
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers("/login", "/file/**").permitAll()
                                 .requestMatchers(HttpMethod.GET, "/**").hasAnyRole("ADMIN", "USER")
-                                .requestMatchers(
-                                        "/v3/api-docs/**",
-                                        "/swagger-ui/index.html",
-                                        "/swagger-ui.html"
-                                ).permitAll()
-                                .requestMatchers("/api/**").permitAll()
                                 .anyRequest()
-                                .authenticated()
-                )
+                                .authenticated())
                 .userDetailsService(customUserDetailsService)
                 .addFilterBefore(myFilter, UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
-
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -56,21 +48,15 @@ public class SecurityConfig {
     }
 
     @Bean
-    public AuthenticationManager authenticationManager(CustomUserDetailsService customUserDetailsService) {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
-        authProvider.setUserDetailsService(customUserDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder()); // Corrected password encoder usage
-        return new ProviderManager(authProvider);
+    public AuthenticationManager authenticationManage(CustomUserDetailsService customUserDetailsService) {
+        return new ProviderManager(authenticationProvider(customUserDetailsService));
     }
 
-    @Bean
     public AuthenticationProvider authenticationProvider(CustomUserDetailsService customUserDetailsService) {
-        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+        var authProvider = new DaoAuthenticationProvider(passwordEncoder());
         authProvider.setUserDetailsService(customUserDetailsService);
-        authProvider.setPasswordEncoder(passwordEncoder());
         return authProvider;
     }
-
 
 
 }

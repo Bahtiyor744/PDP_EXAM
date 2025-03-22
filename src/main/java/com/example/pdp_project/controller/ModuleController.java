@@ -16,8 +16,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ModuleController {
     private final ModuleService moduleService;
-
-
     @GetMapping
     public HttpEntity<?> getModule() {
         List<ModuleDTO> modules = moduleService.getAllModules();
@@ -36,8 +34,6 @@ public class ModuleController {
         ModuleDTO module1 = moduleService.createModule(module);
         return ResponseEntity.status(HttpStatus.CREATED).body(module1);
     }
-
-
     @DeleteMapping("/{id}")
     public HttpEntity<?> deleteModuleById(@PathVariable("id") Integer id) {
         moduleService.getModuleById(id);

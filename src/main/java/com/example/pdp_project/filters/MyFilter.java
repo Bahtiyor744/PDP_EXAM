@@ -32,7 +32,7 @@ public class MyFilter extends OncePerRequestFilter {
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         String token = request.getHeader("token");
-        System.out.println("Token:"+token);
+        System.out.println(token);
         if (token != null){
             if (tokenService.isValid(token)) {
                 String email = tokenService.getUserEmail(token);
@@ -45,7 +45,7 @@ public class MyFilter extends OncePerRequestFilter {
                         null,
                         authorities
                 );
-                System.out.println("Auth"+auth);
+                System.out.println(auth);
                 SecurityContextHolder.getContext().setAuthentication(auth);
             }
         }

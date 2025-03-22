@@ -1,9 +1,10 @@
 package com.example.pdp_project.controller;
 
 import com.example.pdp_project.dto.UserDTO;
-
+import com.example.pdp_project.entity.User;
+import com.example.pdp_project.mapper.UserMapper;
+import com.example.pdp_project.repo.UserRepository;
 import com.example.pdp_project.service.UserService;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
-@Tag(name = "User Controller", description = "Mahsulotlarni boshqarish")
 public class UserController {
     private final UserService userService;
 
