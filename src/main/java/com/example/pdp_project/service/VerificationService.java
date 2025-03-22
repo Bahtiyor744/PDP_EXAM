@@ -23,9 +23,10 @@ public class VerificationService {
         userRepository.save(user);
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(email);
-        message.setSubject("Ваш код подтверждения");
-        message.setText("Ваш код: " + code);
+        message.setSubject("Your confirmation code");
+        message.setText("Your code: " + code);
         mailSender.send(message);
+        System.out.println(code);
     }
     public boolean verifyCode(String email, String code) {
         User user = userRepository.findByEmail(email);

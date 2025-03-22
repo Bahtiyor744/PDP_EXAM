@@ -1,15 +1,15 @@
 package com.example.pdp_project.controller;
 
+import com.example.pdp_project.dto.EmailDTO;
 import com.example.pdp_project.dto.LoginDTO;
+import com.example.pdp_project.dto.UserDTO;
 import com.example.pdp_project.entity.User;
-import com.example.pdp_project.service.AuthenticationService;
-import com.example.pdp_project.service.TokenService;
+import com.example.pdp_project.security.AuthenticationService;
 import com.example.pdp_project.service.UserService;
 import com.example.pdp_project.service.VerificationService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,10 +26,10 @@ public class LoginController {
     private final AuthenticationService authenticationService;
 
     @PostMapping
-    public ResponseEntity<?> loginPage(@RequestBody @Valid LoginDTO loginDTO) {
-        User user = userService.findByEmailAndPassword(loginDTO);
+    public ResponseEntity<?> loginPage(@RequestBody @Valid EmailDTO emailDTO) {
+        User user = userService.findByEmailAndPassword(emailDTO);
         if (user != null) {
-            verificationService.sendEmail(loginDTO.getEmail());
+            verificationService.sendEmail(emailDTO.getEmail());
             return ResponseEntity.ok("Code sent to email");
         }
         return ResponseEntity.status(404).body("User not found");

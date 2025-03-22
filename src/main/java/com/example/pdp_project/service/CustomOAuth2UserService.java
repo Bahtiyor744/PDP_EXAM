@@ -1,9 +1,4 @@
 package com.example.pdp_project.service;
-
-
-
-
-
 import com.example.pdp_project.entity.User;
 import com.example.pdp_project.repo.UserRepository;
 import com.example.pdp_project.service.CustomOAuth2User;

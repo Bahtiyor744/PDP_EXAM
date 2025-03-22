@@ -19,8 +19,6 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ModuleController {
     private final ModuleService moduleService;
-
-
     @GetMapping
     public HttpEntity<?> getModule() {
         List<ModuleDTO> modules = moduleService.getAllModules();

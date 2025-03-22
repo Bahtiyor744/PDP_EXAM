@@ -1,22 +1,23 @@
 package com.example.pdp_project.controller;
 
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import com.example.pdp_project.dto.LoginRequest;
+import com.example.pdp_project.security.AuthService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@RequestMapping("/login")
+@RestController
+@RequestMapping("/api/auth")
+@RequiredArgsConstructor
 public class AuthController {
+    private final AuthService authService;
 
-    @GetMapping
-    public String loginPage(@RequestParam(name = "error", required = false) String error, Model model) {
-        if(error != null) {
-            model.addAttribute("errorMessage", "Ro'yhatdan o'tmagansiz avval");
-        }
-        return "login"; // /src/main/resources/templates/login.html
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest request) {
+        String token = authService.login(request.getEmail(), request.getPassword());
+        return ResponseEntity.ok(token);
     }
-}
 
+
+}
