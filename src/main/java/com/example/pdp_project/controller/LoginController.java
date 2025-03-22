@@ -3,7 +3,7 @@ package com.example.pdp_project.controller;
 import com.example.pdp_project.dto.EmailDTO;
 import com.example.pdp_project.dto.LoginDTO;
 import com.example.pdp_project.entity.User;
-import com.example.pdp_project.service.AuthenticationService;
+import com.example.pdp_project.security.AuthenticationService;
 import com.example.pdp_project.service.UserService;
 import com.example.pdp_project.service.VerificationService;
 import jakarta.validation.Valid;
