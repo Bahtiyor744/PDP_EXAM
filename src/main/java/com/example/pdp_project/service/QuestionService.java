@@ -7,6 +7,7 @@ import com.example.pdp_project.repo.QuestionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,5 +49,15 @@ public class QuestionService {
 
     public void deleteQuestion(Integer id) {
         questionRepository.deleteById(id);
+    }
+
+    public List<QuestionDTO> getQuestionsbyLessonId(Integer id) {
+        List<Question> allByLessonId = questionRepository.findAllByLesson_Id(id);
+        List<QuestionDTO> questionDTOS=new ArrayList<>();
+        for (Question question : allByLessonId) {
+            QuestionDTO questionMapDto = questionMapper.toQuestionMapDto(question);
+            questionDTOS.add(questionMapDto);
+        }
+        return questionDTOS;
     }
 }

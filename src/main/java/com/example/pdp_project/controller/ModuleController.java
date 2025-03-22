@@ -1,9 +1,7 @@
 package com.example.pdp_project.controller;
 
 import com.example.pdp_project.dto.ModuleDTO;
-import com.example.pdp_project.entity.Module;
-import com.example.pdp_project.mapper.ModuleMapper;
-import com.example.pdp_project.repo.ModuleRepository;
+
 import com.example.pdp_project.service.ModuleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
@@ -11,7 +9,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -42,6 +39,13 @@ public class ModuleController {
         moduleService.getModuleById(id);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
+
+    @GetMapping("/mudules/{id}")
+    public HttpEntity<?> getMuduleById(@PathVariable("id") Integer id) {
+        List<ModuleDTO> modulesByCourseId = moduleService.getModulesByCourseId(id);
+        return ResponseEntity.ok(modulesByCourseId);
+    }
+
 
 
 

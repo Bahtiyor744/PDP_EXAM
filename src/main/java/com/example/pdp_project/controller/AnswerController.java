@@ -42,4 +42,10 @@ public class AnswerController {
         return ResponseEntity.noContent().build();
     }
 
+    @GetMapping("/answers/{id}")
+    public HttpEntity<?> getAnswersByQuestionsId(@PathVariable Integer id) {
+        List<AnswerDTO> answerByQuestionsId = answerService.getAnswerByQuestionsId(id);
+        return ResponseEntity.ok(answerByQuestionsId);
+    }
+
 }

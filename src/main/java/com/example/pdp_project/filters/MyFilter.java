@@ -2,7 +2,7 @@ package com.example.pdp_project.filters;
 
 import com.example.pdp_project.entity.User;
 import com.example.pdp_project.repo.UserRepository;
-import com.example.pdp_project.security.TokenService;
+import com.example.pdp_project.service.TokenService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,10 +31,9 @@ public class MyFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = request.getHeader("Authorization");
+        String token = request.getHeader("token");
         System.out.println(token);
         if (token != null){
-            token = token.substring(7);
             if (tokenService.isValid(token)) {
                 String email = tokenService.getUserEmail(token);
                 User user = userRepository.findByEmail(email);
@@ -51,6 +50,5 @@ public class MyFilter extends OncePerRequestFilter {
             }
         }
         filterChain.doFilter(request,response);
-
     }
 }
