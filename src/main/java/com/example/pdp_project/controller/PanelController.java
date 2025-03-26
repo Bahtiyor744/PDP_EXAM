@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-@RequestMapping("/panel")
+//@RestController
+//@RequestMapping("/panel")
 public class PanelController {
 
-    @GetMapping
+//    @GetMapping
     public String panel(@AuthenticationPrincipal OAuth2User principal) {
         return "Hello, " + principal.getAttribute("name") + "!";
     }

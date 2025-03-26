@@ -3,13 +3,16 @@ package com.example.pdp_project.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Value;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
-@NoArgsConstructor()
+@NoArgsConstructor
 public class QuestionDTO {
     private Integer id;
-    private String text;
-    private Integer moduleId;
+    private String title;
+    private Integer lessonId;
+    private List<AnswerDTO> answersDTO;
 }

@@ -1,13 +1,14 @@
 package com.example.pdp_project.controller;
 
 import com.example.pdp_project.dto.ModuleDTO;
-
 import com.example.pdp_project.service.ModuleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -16,37 +17,35 @@ import java.util.List;
 @RequiredArgsConstructor
 public class ModuleController {
     private final ModuleService moduleService;
+
     @GetMapping
-    public HttpEntity<?> getModule() {
-//        List<ModuleDTO> modules = moduleService.getAllModules();
+    public HttpEntity<List<ModuleDTO>> getModule() {
         return ResponseEntity.ok(moduleService.getAllModules());
     }
 
-
-    @GetMapping("/{id}")
-    public HttpEntity<?> getModuleById(@PathVariable("id") Integer id) {
-        ModuleDTO moduleById = moduleService.getModuleById(id);
-        return ResponseEntity.ok(moduleById);
+    @GetMapping("/byCourseId/{courseId}")
+    public HttpEntity<?> getModuleByCourseId(@PathVariable("courseId") Integer courseId) {
+        return ResponseEntity.ok(moduleService.getModulesByCourseId(courseId));
     }
 
-    @PostMapping
-    public HttpEntity<?> addModule(@RequestBody ModuleDTO module) {
-        ModuleDTO module1 = moduleService.createModule(module);
-        return ResponseEntity.status(HttpStatus.CREATED).body(module1);
-    }
-    @DeleteMapping("/{id}")
-    public HttpEntity<?> deleteModuleById(@PathVariable("id") Integer id) {
-        moduleService.getModuleById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @GetMapping("/mudules/{id}")
-    public HttpEntity<?> getMuduleById(@PathVariable("id") Integer id) {
-        List<ModuleDTO> modulesByCourseId = moduleService.getModulesByCourseId(id);
-        return ResponseEntity.ok(modulesByCourseId);
-    }
-
-
-
-
+//    @GetMapping("/{id}")
+//    public HttpEntity<ModuleDTO> getModuleById(@PathVariable("id") Integer id) {
+//        return ResponseEntity.ok(moduleService.getModuleById(id));
+//    }
+//
+//    @PostMapping
+//    public ResponseEntity<?> addModule(@RequestBody @Valid ModulePostDTO module) {
+//        return ResponseEntity.status(HttpStatus.CREATED).body(moduleService.createModule(module));
+//    }
+//
+//    @PutMapping
+//    public ResponseEntity<ModuleDTO> updateModule(ModuleDTO moduleDTO) {
+//        return ResponseEntity.ok(moduleService.updateModule(moduleDTO));
+//    }
+//
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<Void> deleteModuleById(@PathVariable("id") Integer id) {
+//        moduleService.deleteModule(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

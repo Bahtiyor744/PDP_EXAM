@@ -1,7 +1,11 @@
 package com.example.pdp_project.controller;
 
+import com.example.pdp_project.dto.RegisterDTO;
 import com.example.pdp_project.dto.UserDTO;
+import com.example.pdp_project.dto.UserUpdateDTO;
+import com.example.pdp_project.entity.User;
 import com.example.pdp_project.service.UserService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
@@ -26,17 +30,23 @@ public class UserController {
         UserDTO userDTO = userService.findById(id);
         return ResponseEntity.ok(userDTO);
     }
-
-    @PostMapping
-    public ResponseEntity<?> registerPage() {
-        return ResponseEntity.ok().body("");
+    @PutMapping()
+    public ResponseEntity<?> updateCourse(@RequestBody @Valid UserUpdateDTO user) {
+        return ResponseEntity.ok(userService.updateUser(user));
     }
 
+    // Put mapping qoshish kerak
 
-    @DeleteMapping("/{id}")
-    public HttpEntity<?> deleteUser(@PathVariable("id") Integer id) {
-       userService.delete(id);
-       return ResponseEntity.ok().build();
-    }
+//    @PostMapping
+//    public ResponseEntity<?> registerPage() {
+//        return ResponseEntity.ok().body("");
+//    }
+//
+//
+//    @DeleteMapping("/{id}")
+//    public HttpEntity<?> deleteUser(@PathVariable("id") Integer id) {
+//       userService.delete(id);
+//       return ResponseEntity.ok().build();
+//    }
 
 }

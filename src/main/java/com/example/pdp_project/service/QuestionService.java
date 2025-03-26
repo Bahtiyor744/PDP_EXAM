@@ -51,7 +51,7 @@ public class QuestionService {
         questionRepository.deleteById(id);
     }
 
-    public List<QuestionDTO> getQuestionsbyLessonId(Integer id) {
+    public List<QuestionDTO> getQuestionsByLessonId(Integer id) {
         List<Question> allByLessonId = questionRepository.findAllByLesson_Id(id);
         List<QuestionDTO> questionDTOS=new ArrayList<>();
         for (Question question : allByLessonId) {

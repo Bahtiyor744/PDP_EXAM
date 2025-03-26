@@ -31,9 +31,10 @@ public class MyFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authorization");
         System.out.println(token);
         if (token != null){
+            token = token.substring(7);
             if (tokenService.isValid(token)) {
                 String email = tokenService.getUserEmail(token);
                 User user = userRepository.findByEmail(email);

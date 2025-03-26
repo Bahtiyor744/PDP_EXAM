@@ -1,17 +1,14 @@
 package com.example.pdp_project.controller;
 
 
-import com.example.pdp_project.dto.LessonDto;
-import com.example.pdp_project.dto.ModuleDTO;
-import com.example.pdp_project.entity.Lesson;
 import com.example.pdp_project.service.LessonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/lesson")
@@ -24,30 +21,24 @@ public class LessonController {
         return ResponseEntity.ok(lessonService.getAllLessons());
     }
 
-
-    @GetMapping("/{id}")
-    public HttpEntity<?> getLessonById(@PathVariable("id") Integer id){
-            LessonDto lessonById = lessonService.getLessonById(id);
-            return ResponseEntity.ok(lessonById);
-
+    @GetMapping("/byModuleId/{moduleId}")
+    public HttpEntity<?> getLessonByModuleId(@PathVariable("moduleId") Integer moduleId) {
+        return ResponseEntity.ok(lessonService.getLessonsByModuleId(moduleId));
     }
 
-    @PostMapping
-    public HttpEntity<?> addLesson(@RequestBody LessonDto lessonDto) {
-        LessonDto lessonDto1 = lessonService.createLesson(lessonDto);
-        return ResponseEntity.status(HttpStatus.CREATED).body(lessonDto1);
-    }
-    @DeleteMapping("/{id}")
-    public HttpEntity<?> deleteLessonById(@PathVariable("id") Integer id) {
-        lessonService.getLessonById(id);
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
-    }
-
-    @GetMapping("/lessons/{id}")
-    public HttpEntity<?> getLessonByModuleId(@PathVariable("id") Integer id) {
-        List<LessonDto> lessonsByModuleId = lessonService.getLessonsByModuleId(id);
-        return ResponseEntity.ok(lessonsByModuleId);
-    }
-
-
+//    @GetMapping("/{id}")
+//    public HttpEntity<?> getLessonById(@PathVariable("id") Integer id){
+//        return ResponseEntity.ok(lessonService.getLessonById(id));
+//
+//    }
+//    @PostMapping
+//    public HttpEntity<?> addLesson(@RequestBody LessonDto lessonDto) {
+//        LessonDto lessonDto1 = lessonService.createLesson(lessonDto);
+//        return ResponseEntity.status(HttpStatus.CREATED).body(lessonDto1);
+//    }
+//    @DeleteMapping("/{id}")
+//    public HttpEntity<?> deleteLessonById(@PathVariable("id") Integer id) {
+//        lessonService.getLessonById(id);
+//        return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
+//    }
 }

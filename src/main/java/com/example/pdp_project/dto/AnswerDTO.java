@@ -10,6 +10,6 @@ import lombok.Value;
 @NoArgsConstructor()
 public class AnswerDTO {
     private Integer id;
-    private String text;
-    private Integer questionId;
+    private String title;
+
 }

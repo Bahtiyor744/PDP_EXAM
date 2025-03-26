@@ -22,25 +22,16 @@ public class LessonService {
     private final LessonRepository lessonRepository;
     private final LessonMapper lessonMapper=LessonMapper.INSTANCE;
 
-    public List<LessonDto> getLessonsByModuleId(Integer id){
-        List<LessonDto> lessonDto=new ArrayList<>();
-        for (Lesson lesson : lessonRepository.findAllByModule_Id(id)) {
-            LessonDto lessonDtoMapDto = lessonMapper.toLessonDtoMapDto(lesson);
-            lessonDto.add(lessonDtoMapDto);
-        }
-        return lessonDto;
+    public List<LessonDto> getLessonsByModuleId(Integer id) {
+        return lessonRepository.findAllByModule_Id(id).stream()
+                .map(lessonMapper::toLessonDtoMapDto)
+                .collect(Collectors.toList());
     }
 
-    public List<LessonDto> getAllLessons(){
-
-        List<Lesson> all = lessonRepository.findAll();
-        List<LessonDto> lessonDto=new ArrayList<>();
-        for (Lesson lesson : all) {
-            LessonDto lessonDtoMapDto = lessonMapper.toLessonDtoMapDto(lesson);
-            lessonDto.add(lessonDtoMapDto);
-        }
-        return lessonDto;
-
+    public List<LessonDto> getAllLessons() {
+        return lessonRepository.findAll().stream()
+                .map(lessonMapper::toLessonDtoMapDto)
+                .collect(Collectors.toList());
     }
 
     public LessonDto getLessonById(Integer id) {

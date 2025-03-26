@@ -22,30 +22,27 @@ public class QuestionController {
         List<QuestionDTO> allQuestions = questionService.getAllQuestions();
         return ResponseEntity.ok(allQuestions);
     }
-
-    @GetMapping("/{id}")
-    public HttpEntity<?> getQuestion(@PathVariable("id") Integer id) {
-        QuestionDTO questionById = questionService.getQuestionById(id);
-        return ResponseEntity.ok(questionById);
+    @GetMapping("/byLessonId/{lessonId}")
+    public HttpEntity<?> getQuestionsByLessonId(@PathVariable("lessonId") Integer id) {
+        return ResponseEntity.ok(questionService.getQuestionsByLessonId(id));
     }
 
-    @PostMapping
-    public HttpEntity<?> createQuestion(@RequestBody QuestionDTO question) {
-        QuestionDTO question1 = questionService.createQuestion(question);
-        return ResponseEntity.ok(question1);
-    }
-
-
-    @DeleteMapping("/{id}")
-    public HttpEntity<?> deleteQuestion(@PathVariable("id") Integer id) {
-        questionService.deleteQuestion(id);
-        return ResponseEntity.noContent().build();
-    }
-
-    @GetMapping("/questions/{id}")
-    public HttpEntity<?> getQuestionsByLessonId(@PathVariable("id") Integer id) {
-        List<QuestionDTO> questionsbyLessonId = questionService.getQuestionsbyLessonId(id);
-        return ResponseEntity.ok(questionsbyLessonId);
-    }
-
+//    @GetMapping("/{id}")
+//    public HttpEntity<?> getQuestion(@PathVariable("id") Integer id) {
+//        QuestionDTO questionById = questionService.getQuestionById(id);
+//        return ResponseEntity.ok(questionById);
+//    }
+//
+//    @PostMapping
+//    public HttpEntity<?> createQuestion(@RequestBody QuestionDTO question) {
+//        QuestionDTO question1 = questionService.createQuestion(question);
+//        return ResponseEntity.ok(question1);
+//    }
+//
+//
+//    @DeleteMapping("/{id}")
+//    public HttpEntity<?> deleteQuestion(@PathVariable("id") Integer id) {
+//        questionService.deleteQuestion(id);
+//        return ResponseEntity.noContent().build();
+//    }
 }

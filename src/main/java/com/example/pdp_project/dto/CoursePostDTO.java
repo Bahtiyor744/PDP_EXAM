@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor()
-public class CourseDTO {
-    private Integer id;
+public class CoursePostDTO {
+    @NotNull(message = "Name cannot be null")
     private String name;
 }

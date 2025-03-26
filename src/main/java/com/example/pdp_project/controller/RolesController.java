@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/roles")
+//@RestController
+//@RequestMapping("/roles")
 @RequiredArgsConstructor
 public class RolesController {
 
