@@ -17,11 +17,11 @@ public class AnswerController {
 
     private final AnswerService answerService;
 
-    @GetMapping
-    public HttpEntity<?> getAnswer() {
-        List<AnswerDTO> allAnswers = answerService.getAllAnswers();
-        return ResponseEntity.ok(allAnswers);
-    }
+//    @GetMapping
+//    public HttpEntity<?> getAnswer() {
+//        List<AnswerDTO> allAnswers = answerService.getAllAnswers();
+//        return ResponseEntity.ok(allAnswers);
+//    }
 
 
 //    @GetMapping("/{id}")

@@ -85,9 +85,12 @@ public class UserService {
         User user = userRepository.findById(userUpdateDTO.getId()).orElseThrow();
         user.setFirstName(userUpdateDTO.getFirstName());
         user.setLastName(userUpdateDTO.getLastName());
-        user.setPassword(userUpdateDTO.getPassword());
-        Attachment attachment = attachmentRepository.findById(userUpdateDTO.getAttachmentID()).orElseThrow();
-        user.setAttachment(attachment);
+        user.setPassword(passwordEncoder.encode(userUpdateDTO.getPassword()));
+        user.setEmail(userUpdateDTO.getEmail());
+        if (userUpdateDTO.getAttachmentID()!=0){
+            Attachment attachment = attachmentRepository.findById(userUpdateDTO.getAttachmentID()).orElseThrow();
+            user.setAttachment(attachment);
+        }
         userRepository.save(user);
         return userMapper.toUserMapDto(user);
     }
